@@ -9,7 +9,7 @@ const workProcessData = [
       </svg>
     ),
     title: "Pick-up Location",
-    description: "We'll meet you at the airport or your chosen location, ready to start your journey.",
+    description: "We&apos;ll meet you at the airport or your chosen location, ready to start your journey.",
   },
   {
     icon: (
@@ -65,9 +65,9 @@ const WorkProcess = () => {
         <div className="mt-16 max-w-3xl mx-auto">
           <p className="text-lg mb-6 text-gray-700">
             When your pick-up location is Guanacaste Airport (LIR) or Juan Santamaria Airport (SJO), 
-            we'll be waiting for you right outside the main exit, holding a sign with your name, 
+            we&apos;ll be waiting for you right outside the main exit, holding a sign with your name, 
             ready to start your journey. If your pick-up location is elsewhere—such as a hotel, 
-            Airbnb, house, or any other spot you choose—we'll be there on time, happy and ready 
+            Airbnb, house, or any other spot you choose—we&apos;ll be there on time, happy and ready 
             to begin your ride.
           </p>
           <p className="text-md font-semibold text-gray-900">

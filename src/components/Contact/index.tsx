@@ -9,7 +9,7 @@ const Contact = () => {
             Contact Us
           </h2>
           <p className="text-lg text-gray-700">
-            Have any questions or need assistance with your reservation? We're here to help!
+            Have any questions or need assistance with your reservation? We&apos;re here to help!
           </p>
         </div>
 
@@ -37,7 +37,7 @@ const Contact = () => {
             </li>
           </ul>
           <p className="mt-8 text-center text-gray-600">
-            Feel free to reach out, and we'll get back to you as soon as possible!
+            Feel free to reach out, and we&apos;ll get back to you as soon as possible!
           </p>
         </div>
       </div>
