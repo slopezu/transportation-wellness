@@ -27,36 +27,37 @@ export default function MapComponent({ origin, destination }) {
   }, [isLoaded, map])
 
   useEffect(() => {
-    if (map && directionsRenderer && origin && destination) {
-      const directionsService = new window.google.maps.DirectionsService()
-      directionsService.route(
-        {
-          origin: new window.google.maps.LatLng(origin.lat, origin.lng),
-          destination: new window.google.maps.LatLng(destination.lat, destination.lng),
-          travelMode: window.google.maps.TravelMode.DRIVING,
-        },
-        (result, status) => {
-          if (status === 'OK') {
-            directionsRenderer.setDirections(result)
-          } else {
-            console.error('Error al calcular la ruta:', status)
-          }
-        }
-      )
-    }
-  }, [map, directionsRenderer, origin, destination])
-
-  useEffect(() => {
     if (map) {
       window.google.maps.event.trigger(map, 'resize')
-      if (origin && destination) {
-        const bounds = new window.google.maps.LatLngBounds()
-        bounds.extend(new window.google.maps.LatLng(origin.lat, origin.lng))
-        bounds.extend(new window.google.maps.LatLng(destination.lat, destination.lng))
-        map.fitBounds(bounds)
+      
+      if (origin && !destination) {
+        // Zoom to origin when only origin is set
+        map.setCenter(new window.google.maps.LatLng(origin.lat, origin.lng))
+        map.setZoom(12)
+      } else if (origin && destination) {
+        // Show route when both origin and destination are set
+        const directionsService = new window.google.maps.DirectionsService()
+        directionsService.route(
+          {
+            origin: new window.google.maps.LatLng(origin.lat, origin.lng),
+            destination: new window.google.maps.LatLng(destination.lat, destination.lng),
+            travelMode: window.google.maps.TravelMode.DRIVING,
+          },
+          (result, status) => {
+            if (status === 'OK' && directionsRenderer) {
+              directionsRenderer.setDirections(result)
+              const bounds = new window.google.maps.LatLngBounds()
+              bounds.extend(new window.google.maps.LatLng(origin.lat, origin.lng))
+              bounds.extend(new window.google.maps.LatLng(destination.lat, destination.lng))
+              map.fitBounds(bounds)
+            } else {
+              console.error('Error al calcular la ruta:', status)
+            }
+          }
+        )
       }
     }
-  }, [map, origin, destination])
+  }, [map, directionsRenderer, origin, destination])
 
   if (loadError) {
     return <div>Error al cargar Google Maps: {loadError.message}</div>
