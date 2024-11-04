@@ -56,6 +56,12 @@ export default function MapComponent({ origin, destination }) {
     }
   }, [map, directionsRenderer, origin, destination])
 
+  useEffect(() => {
+    if (map) {
+      window.google.maps.event.trigger(map, 'resize')
+    }
+  }, [map, isMobile])
+
   if (loadError) {
     return <div>Error al cargar Google Maps: {loadError.message}</div>
   }

@@ -3,8 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Menu } from "@/types/menu";
 import { onScroll } from "@/utils/scrollActive";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher";
 import { Menu as MenuIcon, X } from 'lucide-react';
@@ -32,6 +31,7 @@ export default function Header() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const pathUrl = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     if (pathUrl === "/") {
@@ -73,6 +73,11 @@ export default function Header() {
     closeMenu();
   };
 
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    router.refresh();
+  };
+
   return (
     <header
       className={`fixed left-0 top-0 z-50 w-full border-b border-stroke bg-white bg-opacity-80 backdrop-blur-sm transition-all duration-300 dark:border-stroke-dark dark:bg-black dark:bg-opacity-80 ${
@@ -80,15 +85,15 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto max-w-[1400px] px-4">
-        <div className="flex items-center justify-between py-4 lg:py-0">
-          <Link href="/" className="block">
+        <div className="flex items-center justify-between py-2">
+          <a href="/" onClick={handleLogoClick} className="block">
             <Image
               width={70}
               height={34}
               src="/images/logo/logo.png"
               alt="Logo"
               priority
-              className="h-auto w-auto dark:hidden"
+              className="h-8 w-auto dark:hidden"
             />
             <Image
               width={70}
@@ -96,9 +101,9 @@ export default function Header() {
               src="/images/logo/logo.png"
               alt="Logo"
               priority
-              className="hidden h-auto w-auto dark:block"
+              className="hidden h-8 w-auto dark:block"
             />
-          </Link>
+          </a>
 
           <button
             onClick={navbarToggleHandler}
@@ -120,13 +125,13 @@ export default function Header() {
             <ul className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:space-x-8 lg:space-y-0">
               {menuData.map((item, index) => (
                 <li key={index}>
-                  <Link
+                  <a
                     href={item.route}
                     onClick={(e) => scrollToSection(e, item.route.replace('/#', ''))}
                     className="text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
