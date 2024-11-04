@@ -8,25 +8,15 @@ export default function MapComponent({ origin, destination }) {
   const mapRef = useRef(null)
   const [map, setMap] = useState(null)
   const [directionsRenderer, setDirectionsRenderer] = useState(null)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
-
-  useEffect(() => {
-    if (isLoaded && !map && mapRef.current) {
+    if (isLoaded && mapRef.current && !map) {
       const newMap = new window.google.maps.Map(mapRef.current, {
         center: { lat: 9.7489, lng: -83.7534 },
         zoom: 8,
         gestureHandling: 'cooperative',
-        zoomControl: !isMobile,
-        streetViewControl: !isMobile,
+        zoomControl: true,
+        streetViewControl: false,
         mapTypeControl: false,
       })
       setMap(newMap)
@@ -34,7 +24,7 @@ export default function MapComponent({ origin, destination }) {
       newDirectionsRenderer.setMap(newMap)
       setDirectionsRenderer(newDirectionsRenderer)
     }
-  }, [isLoaded, map, isMobile])
+  }, [isLoaded, map])
 
   useEffect(() => {
     if (map && directionsRenderer && origin && destination) {
@@ -59,8 +49,14 @@ export default function MapComponent({ origin, destination }) {
   useEffect(() => {
     if (map) {
       window.google.maps.event.trigger(map, 'resize')
+      if (origin && destination) {
+        const bounds = new window.google.maps.LatLngBounds()
+        bounds.extend(new window.google.maps.LatLng(origin.lat, origin.lng))
+        bounds.extend(new window.google.maps.LatLng(destination.lat, destination.lng))
+        map.fitBounds(bounds)
+      }
     }
-  }, [map, isMobile])
+  }, [map, origin, destination])
 
   if (loadError) {
     return <div>Error al cargar Google Maps: {loadError.message}</div>
@@ -75,9 +71,8 @@ export default function MapComponent({ origin, destination }) {
       ref={mapRef} 
       style={{ 
         width: '100%', 
-        height: isMobile ? '300px' : '400px',
-        maxWidth: '100vw',
-        overflow: 'hidden'
+        height: '100%',
+        minHeight: '300px',
       }} 
     />
   )

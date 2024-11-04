@@ -85,23 +85,23 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto max-w-[1400px] px-4">
-        <div className="flex items-center justify-between py-2">
+        <div className="flex items-center justify-between py-3">
           <a href="/" onClick={handleLogoClick} className="block">
             <Image
-              width={70}
-              height={34}
+              width={140}
+              height={68}
               src="/images/logo/logo.png"
               alt="Logo"
               priority
-              className="h-8 w-auto dark:hidden"
+              className="h-16 w-auto dark:hidden"
             />
             <Image
-              width={70}
-              height={34}
+              width={140}
+              height={68}
               src="/images/logo/logo.png"
               alt="Logo"
               priority
-              className="hidden h-8 w-auto dark:block"
+              className="hidden h-16 w-auto dark:block"
             />
           </a>
 
@@ -111,9 +111,9 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             {navbarOpen ? (
-              <X className="h-6 w-6 text-black dark:text-white" />
+              <X className="h-8 w-8 text-black dark:text-white" />
             ) : (
-              <MenuIcon className="h-6 w-6 text-black dark:text-white" />
+              <MenuIcon className="h-8 w-8 text-black dark:text-white" />
             )}
           </button>
 

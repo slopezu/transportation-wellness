@@ -78,7 +78,6 @@ export default function HeroArea() {
   }
 
   const handleReservation = (data: any) => {
-    // Aquí iría la lógica para procesar la reserva
     console.log("Reserva realizada:", data)
     setShowReservationForm(false)
     setQuotationResult(null)
@@ -125,7 +124,7 @@ export default function HeroArea() {
         <div className="container mx-auto px-6">
           <div className="bg-black bg-opacity-50 p-8 rounded-lg">
             <div className="flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-8">
-              <div className="lg:w-1/2 mb-10 lg:mb-0">
+              <div className="w-full lg:w-1/2 mb-10 lg:mb-0">
                 <h1 className="text-4xl font-bold mb-4">Welcome to Wellness Transportation</h1>
                 <p className="text-xl mb-8">From Guanacaste to the world</p>
                 {!showReservationForm ? (
@@ -166,7 +165,7 @@ export default function HeroArea() {
                   />
                 )}
               </div>
-              <div className="lg:w-1/2">
+              <div className="w-full lg:w-1/2 h-[300px] lg:h-[400px]">
                 <MapComponent origin={mapPoints.origin} destination={mapPoints.destination} />
               </div>
             </div>
