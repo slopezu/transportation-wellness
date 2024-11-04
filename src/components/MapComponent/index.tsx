@@ -1,58 +1,43 @@
 'use client'
 
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useGoogleMaps } from '../GoogleMapsContext'
 
 export default function MapComponent({ origin, destination }) {
   const { isLoaded, loadError } = useGoogleMaps()
   const mapRef = useRef(null)
-  const mapInstanceRef = useRef(null)
-  const directionsRendererRef = useRef(null)
-  const markersRef = useRef([])
-  const [mapReady, setMapReady] = useState(false)
-  const mapId = useRef(`map-${Math.random().toString(36).substr(2, 9)}`)
+  const [map, setMap] = useState(null)
+  const [directionsRenderer, setDirectionsRenderer] = useState(null)
+  const [isMobile, setIsMobile] = useState(false)
 
-  const clearMarkers = useCallback(() => {
-    markersRef.current.forEach(marker => marker.setMap(null))
-    markersRef.current = []
-  }, [])
-
-  const createMarker = useCallback((position) => {
-    if (window.google.maps.marker && window.google.maps.marker.AdvancedMarkerElement) {
-      return new window.google.maps.marker.AdvancedMarkerElement({
-        position: position,
-        map: mapInstanceRef.current
-      })
-    } else {
-      return new window.google.maps.Marker({
-        position: position,
-        map: mapInstanceRef.current
-      })
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
     }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   useEffect(() => {
-    if (isLoaded && !mapInstanceRef.current && mapRef.current) {
-      mapInstanceRef.current = new window.google.maps.Map(mapRef.current, {
+    if (isLoaded && !map && mapRef.current) {
+      const newMap = new window.google.maps.Map(mapRef.current, {
         center: { lat: 9.7489, lng: -83.7534 },
         zoom: 8,
-        mapId: mapId.current,
+        gestureHandling: 'cooperative',
+        zoomControl: !isMobile,
+        streetViewControl: !isMobile,
+        mapTypeControl: false,
       })
-      directionsRendererRef.current = new window.google.maps.DirectionsRenderer()
-      directionsRendererRef.current.setMap(mapInstanceRef.current)
-      setMapReady(true)
+      setMap(newMap)
+      const newDirectionsRenderer = new window.google.maps.DirectionsRenderer()
+      newDirectionsRenderer.setMap(newMap)
+      setDirectionsRenderer(newDirectionsRenderer)
     }
-  }, [isLoaded])
+  }, [isLoaded, map, isMobile])
 
   useEffect(() => {
-    if (!mapReady) return
-
-    clearMarkers()
-    if (directionsRendererRef.current) {
-      directionsRendererRef.current.setDirections({ routes: [] })
-    }
-
-    if (origin && destination) {
+    if (map && directionsRenderer && origin && destination) {
       const directionsService = new window.google.maps.DirectionsService()
       directionsService.route(
         {
@@ -61,38 +46,15 @@ export default function MapComponent({ origin, destination }) {
           travelMode: window.google.maps.TravelMode.DRIVING,
         },
         (result, status) => {
-          if (status === 'OK' && directionsRendererRef.current) {
-            directionsRendererRef.current.setDirections(result)
+          if (status === 'OK') {
+            directionsRenderer.setDirections(result)
           } else {
             console.error('Error al calcular la ruta:', status)
           }
         }
       )
-    } else {
-      const bounds = new window.google.maps.LatLngBounds()
-
-      if (origin) {
-        const position = new window.google.maps.LatLng(origin.lat, origin.lng)
-        const marker = createMarker(position)
-        markersRef.current.push(marker)
-        bounds.extend(position)
-      }
-      
-      if (destination) {
-        const position = new window.google.maps.LatLng(destination.lat, destination.lng)
-        const marker = createMarker(position)
-        markersRef.current.push(marker)
-        bounds.extend(position)
-      }
-
-      if (origin || destination) {
-        mapInstanceRef.current.fitBounds(bounds)
-      } else {
-        mapInstanceRef.current.setCenter({ lat: 9.7489, lng: -83.7534 })
-        mapInstanceRef.current.setZoom(8)
-      }
     }
-  }, [mapReady, origin, destination, clearMarkers, createMarker])
+  }, [map, directionsRenderer, origin, destination])
 
   if (loadError) {
     return <div>Error al cargar Google Maps: {loadError.message}</div>
@@ -102,5 +64,15 @@ export default function MapComponent({ origin, destination }) {
     return <div>Cargando Google Maps...</div>
   }
 
-  return <div ref={mapRef} id={mapId.current} style={{ width: '100%', height: '400px' }} />
+  return (
+    <div 
+      ref={mapRef} 
+      style={{ 
+        width: '100%', 
+        height: isMobile ? '300px' : '400px',
+        maxWidth: '100vw',
+        overflow: 'hidden'
+      }} 
+    />
+  )
 }

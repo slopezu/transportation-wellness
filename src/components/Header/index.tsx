@@ -1,160 +1,102 @@
 'use client'
 
-import React, { useEffect, useState } from "react";
-import { Menu } from "@/types/menu";
-import { onScroll } from "@/utils/scrollActive";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import Image from "next/image";
-import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher";
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { Menu, X } from 'lucide-react'
 
-const menuData: Menu[] = [
-  {
-    label: "Features",
-    route: "/#features",
-  },
-  {
-    label: "About",
-    route: "/#about",
-  },
-  {
-    label: "How It Works",
-    route: "/#work-process",
-  },
-  {
-    label: "Contact Us (Last minute)",
-    route: "/#contact",
-  },
-];
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const pathname = usePathname()
 
-export default function Header() {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [sticky, setSticky] = useState(false);
-  const pathUrl = usePathname();
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
+  }
 
   useEffect(() => {
-    if (pathUrl === "/") {
-      window.addEventListener("scroll", onScroll);
-    }
+    const closeMenu = () => setIsMenuOpen(false)
+    window.addEventListener('resize', closeMenu)
+    return () => window.removeEventListener('resize', closeMenu)
+  }, [])
 
-    window.addEventListener("scroll", handleStickyNavbar);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("scroll", handleStickyNavbar);
-    };
-  }, [pathUrl]);
-
-  const navbarToggleHandler = () => {
-    setNavbarOpen(!navbarOpen);
-  };
-
-  const handleStickyNavbar = () => {
-    if (window.scrollY >= 80) {
-      setSticky(true);
-    } else {
-      setSticky(false);
-    }
-  };
-
-  const closeMenu = () => {
-    setNavbarOpen(false);
-  };
-
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      console.error(`Section with id '${sectionId}' not found`);
-    }
-    closeMenu();
-  };
+  const navItems = [
+    { name: 'Inicio', href: '/' },
+    { name: 'Servicios', href: '/services' },
+    { name: 'Sobre Nosotros', href: '/about' },
+    { name: 'Contacto', href: '/contact' },
+  ]
 
   return (
-    <header
-      className={`navbar left-0 top-0 z-50 w-full border-stroke bg-white dark:border-stroke-dark dark:bg-black ${
-        sticky
-          ? "fixed border-b bg-opacity-95 backdrop-blur-sm dark:bg-opacity-95"
-          : "absolute"
-      }`}
-    >
-      <div className="container relative max-w-[1400px]">
-        <div className="flex items-center justify-between">
-          <div className="block py-4 lg:py-0">
-            <Link href="/" className="block max-w-[145px] sm:max-w-[180px]">
-              <Image
-                width={70}
-                height={34}
-                src={"/images/logo/logo.png"}
-                alt="Logo"
-                priority
-                className="block dark:hidden"
-                style={{ width: "auto", height: "auto" }}
-              />
-              <Image
-                width={70}
-                height={34}
-                src={"/images/logo/logo.png"}
-                alt="Logo"
-                priority
-                className="hidden dark:block"
-                style={{ width: "auto", height: "auto" }}
+    <header className="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+          <div className="flex justify-start lg:w-0 lg:flex-1">
+            <Link href="/">
+              <span className="sr-only">Transportation Wellness</span>
+              <img
+                className="h-8 w-auto sm:h-10"
+                src="/logo.png"
+                alt="Transportation Wellness"
               />
             </Link>
           </div>
-
-          <button
-            onClick={navbarToggleHandler}
-            className="navbarOpen absolute right-4 top-1/2 z-50 flex h-10 w-10 -translate-y-1/2 flex-col items-center justify-center space-y-[6px] font-bold lg:hidden"
-            aria-label="navbarOpen"
-            name="navbarOpen"
-          >
-            <span className="block h-[2px] w-7 bg-black dark:bg-white"></span>
-            <span className="block h-[2px] w-7 bg-black dark:bg-white"></span>
-            <span className="block h-[2px] w-7 bg-black dark:bg-white"></span>
-          </button>
-
-          <div
-            className={`${
-              navbarOpen ? "" : "hidden"
-            } menu-wrapper relative justify-between lg:flex`}
-          >
+          <div className="-mr-2 -my-2 md:hidden">
             <button
-              onClick={() => setNavbarOpen(false)}
-              className="navbarClose fixed right-10 top-10 z-[9999] flex h-10 w-10 flex-col items-center justify-center font-bold lg:hidden"
-              name="navbarClose"
-              aria-label="navbarClose"
+              type="button"
+              className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              onClick={toggleMenu}
             >
-              <span className="block h-[2px] w-7 rotate-45 bg-black dark:bg-white"></span>
-              <span className="-mt-[2px] block h-[2px] w-7 -rotate-45 bg-black dark:bg-white"></span>
+              <span className="sr-only">Open menu</span>
+              {isMenuOpen ? (
+                <X className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="h-6 w-6" aria-hidden="true" />
+              )}
             </button>
-
-            <nav className="fixed left-0 top-0 z-[999] flex h-screen w-full items-center justify-center bg-white bg-opacity-95 text-center backdrop-blur-sm dark:bg-black dark:bg-opacity-95 lg:static lg:h-auto lg:w-max lg:bg-transparent lg:bg-opacity-100 lg:backdrop-blur-0 lg:backdrop-blur-none lg:dark:bg-transparent dark:lg:bg-opacity-100">
-              <ul className="items-center space-y-3 lg:flex lg:space-x-8 lg:space-y-0 xl:space-x-10">
-                {menuData.map((item, index) => (
-                  <li key={index} className="menu-item">
-                    <Link
-                      href={item.route}
-                      onClick={(e) => scrollToSection(e, item.route.replace('/#', ''))}
-                      className={`${
-                        sticky ? "lg:py-[21px]" : "lg:py-7"
-                      } ud-menu-scroll inline-flex items-center text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary`}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
           </div>
+          <nav className="hidden md:flex space-x-10">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`text-base font-medium ${
+                  pathname === item.href
+                    ? 'text-indigo-600'
+                    : 'text-gray-500 hover:text-gray-900'
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      </div>
 
-          <div className="mr-[60px] flex items-center justify-end lg:mr-0">
-            <DarkModeSwitcher />
-          </div>
+      {/* Mobile menu */}
+      <div
+        className={`${
+          isMenuOpen ? 'block' : 'hidden'
+        } md:hidden absolute top-full left-0 w-full bg-white shadow-lg`}
+      >
+        <div className="pt-2 pb-3 space-y-1">
+          {navItems.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
+                pathname === item.href
+                  ? 'border-indigo-500 text-indigo-700 bg-indigo-50'
+                  : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
+              }`}
+              onClick={toggleMenu}
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
       </div>
     </header>
-  );
+  )
 }
+
+export default Header
