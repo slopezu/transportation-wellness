@@ -8,25 +8,25 @@ import Contact from '@/components/Contact';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Wellness Transportation | Eco-Friendly Shuttle Services in Costa Rica',
-  description: 'Experience reliable, sustainable, and comfortable shuttle transportation services for all your Costa Rica travel needs. Book your eco-friendly ride with Wellness Transportation today!',
+  title: 'Wellness Transportation | Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online',
+  description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.',
   openGraph: {
-    title: 'Wellness Transportation | Eco-Friendly Shuttle Services in Costa Rica',
-    description: 'Book your eco-friendly shuttle service for reliable and comfortable transportation across Costa Rica. Airport transfers, hotel shuttles, and custom tours available.',
+    title: 'Wellness Transportation | Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online'',
+    description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
     images: [
       {
         url: 'https://transportation-wellness.com/home-og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Wellness Transportation Costa Rica - Eco-Friendly Shuttle Services'
+        alt: 'Wellness Transportation - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online'
       }
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wellness Transportation | Eco-Friendly Shuttle Services in Costa Rica',
-    description: 'Book your eco-friendly shuttle service for reliable and comfortable transportation across Costa Rica. Airport transfers, hotel shuttles, and custom tours available.',
+    title: 'Wellness Transportation | Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online',
+    description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
     images: ['https://transportation-wellness.com/home-twitter-image.jpg'],
   },
 }
@@ -35,13 +35,13 @@ export default function Home() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Wellness Transportation - Home",
-    "description": "Eco-friendly shuttle transportation services in Costa Rica",
+    "name": "Wellness Transportation CR- Home",
+    "description": "Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online",
     "url": "https://transportation-wellness.com",
     "mainEntity": {
       "@type": "TransportationService",
-      "name": "Wellness Transportation",
-      "description": "Reliable and sustainable shuttle services across Costa Rica",
+      "name": "Wellness Transportation CR",
+      "description": "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica",
       "areaServed": "Costa Rica",
       "serviceType": ["Airport Transfers", "Hotel Shuttles", "Custom Tours"],
       "availableLanguage": ["Spanish", "English"],
