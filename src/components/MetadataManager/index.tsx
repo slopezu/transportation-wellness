@@ -19,12 +19,28 @@ const defaultKeywords = [
   "airport transfer",
   "eco-friendly transportation",
   "Guanacaste  airport shuttle",
-  "private minivan Costa Rica"
+  "private minivan Costa Rica",
+    'airport shuttle Costa Rica',
+    'Liberia airport transfers',
+    'Nosara airport transfers',
+    'Hospital shuttle home',
+    'Santa Teresa shuttle transportation',
+    'Hermosa beach airport transfers',
+    'Avellanas, Potrero, Brasilito,Flamingo beach airport shuttle',
+    'San José airport shuttle',
+    'private transfers Costa Rica',
+    'Ocotal shuttle Coco',
+    'Arenal Volcano shuttle',
+    'Monteverde transportation',
+    'Tamarindo shuttle',
+    'Guanacaste airport',
+    'Lir Daniel Oduber Quiros Lir',
+    'Sjo Juan Santamaria Sjo'
 ]
 
 export default function MetadataManager({
-  title = "Wellness Transportation | Hotel airport Shuttle in Costa Rica",
-  description = "Experience comfortable and easy shuttle transportation across Costa Rica with Wellness Transportation. Book your eco-friendly ride today!",
+  title = "Wellness Transportation | Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online",
+  description = "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.",
   keywords = []
 }: MetadataManagerProps) {
   const pathname = usePathname()
