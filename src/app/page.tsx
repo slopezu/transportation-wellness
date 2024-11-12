@@ -8,10 +8,10 @@ import Contact from '@/components/Contact';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Wellness Transportation | Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online',
+  title: 'Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service',
   description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.',
   openGraph: {
-    title: 'Wellness Transportation | Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online',
+    title: 'Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service',
     description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
     images: [
       {
