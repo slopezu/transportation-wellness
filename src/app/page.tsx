@@ -18,14 +18,14 @@ export const metadata: Metadata = {
         url: 'https://transportation-wellness.com/home-og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Wellness Transportation - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online'
+        alt: 'Wellness Transportation - Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service'
       }
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wellness Transportation | Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online',
+    title: 'Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service',
     description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
     images: ['https://transportation-wellness.com/home-twitter-image.jpg'],
   },
@@ -36,14 +36,14 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Wellness Transportation CR- Home",
-    "description": "Guanacaste (Lir) & San Jose (Sjo) Shuttle Service - Easy booking online",
+    "description": "Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service",
     "url": "https://transportation-wellness.com",
     "mainEntity": {
       "@type": "TransportationService",
       "name": "Wellness Transportation CR",
       "description": "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica",
       "areaServed": "Costa Rica",
-      "serviceType": ["Airport Transfers", "Hotel Shuttles", "Custom Tours"],
+      "serviceType": ["Airport Transfers", "Hotel Shuttle", "Custom Tours"],
       "availableLanguage": ["Spanish", "English"],
       "priceRange": "$$",
       "telephone": "+506 89680765",
