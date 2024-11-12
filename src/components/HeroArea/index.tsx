@@ -102,9 +102,10 @@ export default function HeroArea() {
   return (
     <>
       <MetadataManager 
-        title="Eco-Friendly Shuttle Transportation in Costa Rica | Wellness Transportation"
-        description="Experience reliable, sustainable, and comfortable shuttle transportation services for all your Costa Rica travel needs. Book your eco-friendly ride with Wellness Transportation today!"
+        title="Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service"
+        description="Select your locations on the map - Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo"
         keywords={[
+          "Guanacaste airport shuttle",
           "airport shuttle Costa Rica",
           "Liberia airport transfers",
           "Nosara airport transfers",
@@ -116,7 +117,13 @@ export default function HeroArea() {
           "Arenal Volcano shuttle",
           "Monteverde transportation",
           "Tamarindo shuttle",
-          "Guanacaste airport",
+          "the best shuttle",
+          "Playa Hermosa shuttle",
+          "Coco shuttle",
+          "Papagayo shuttle",
+          "Puntarenas shuttle",
+           "Jaco shuttle",
+          "Manuel Antonio shuttle",
           "eco-friendly transportation Costa Rica"
         ]}
       />
