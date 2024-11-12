@@ -13,8 +13,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://transportation-wellness.com'),
   title: {
-    default: 'Wellness Transportation | Guanacaste & San Jose Shuttle - Easy booking online',
-    template: '%s | Wellness Transportation'
+    default: 'Wellness Transportation | Easy online booking Shuttle service',
+    template: '%s | Wellness Transportation CR'
   },
   description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.',
   keywords: [
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         url: 'https://transportation-wellness.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Wellness Transportation Guanacaste & San Jose Shuttle - Easy booking online'
+        alt: 'Easy online booking Shuttle service'
       }
     ]
   },
@@ -71,7 +71,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "TransportationService",
-    "name": "Wellness Transportation",
+    "name": "Wellness Transportation CR",
     "description": "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.",
     "areaServed": "Costa Rica",
     "url": "https://transportation-wellness.com",
