@@ -8,24 +8,24 @@ import Contact from '@/components/Contact';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service',
+  title: 'Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service',
   description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.',
   openGraph: {
-    title: 'Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service',
+    title: 'Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service',
     description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
     images: [
       {
         url: 'https://transportation-wellness.com/home-og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Wellness Transportation - Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service'
+        alt: 'Wellness Transportation - Easy booking online - Guanacaste and San Jose Shuttle Service'
       }
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service',
+    title: 'Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service',
     description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
     images: ['https://transportation-wellness.com/home-twitter-image.jpg'],
   },
@@ -36,7 +36,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Wellness Transportation CR- Home",
-    "description": "Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service",
+    "description": "Easy booking online - Guanacaste and San Jose Shuttle Service",
     "url": "https://transportation-wellness.com",
     "mainEntity": {
       "@type": "TransportationService",
