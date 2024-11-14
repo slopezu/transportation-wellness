@@ -102,7 +102,7 @@ export default function HeroArea() {
   return (
     <>
       <MetadataManager 
-        title="Wellness Transportation | Easy booking online - Guanacaste (Lir) & San Jose (Sjo) Shuttle Service"
+        title="Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service"
         description="Select your locations on the map - Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo"
         keywords={[
           "Guanacaste airport shuttle",
