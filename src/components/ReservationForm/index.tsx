@@ -94,26 +94,26 @@ export default function ReservationForm({ quotationData, onReservation, onCancel
     return format(date, 'HH:mm:ss');
   }
 
-const sendConfirmationEmail = async (reservationData: any) => {
-  try {
-    const response = await fetch('/api/send-confirmation-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(reservationData),
-    });
+  const sendConfirmationEmail = async (reservationData: any) => {
+    try {
+      const response = await fetch('/api/send-confirmation-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationData),
+      });
 
-    if (!response.ok) {
-      throw new Error('Failed to send confirmation email');
+      if (!response.ok) {
+        throw new Error('Failed to send confirmation email');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error sending confirmation email:', error);
+      throw error;
     }
-
-    return await response.json();
-  } catch (error) {
-    console.error('Error sending confirmation email:', error);
-    throw error;
-  }
-};
+  };
 
   const saveReservationToSupabase = async (reservationData: any) => {
     try {
@@ -324,7 +324,7 @@ const sendConfirmationEmail = async (reservationData: any) => {
                     name="pickup_date"
                     rules={{ 
                       required: "This field is required",
-                      validate: value => {
+                validate: value => {
                         const today = startOfDay(new Date());
                         const selectedDate = startOfDay(new Date(value));
                         return isAfter(selectedDate, addDays(today, 1)) || 
@@ -468,56 +468,56 @@ const sendConfirmationEmail = async (reservationData: any) => {
             exit={{ opacity: 0, x: -50 }}
           >
             <h3 className="text-xl font-bold mb-4 text-black">Confirm Reservation</h3>
-            <div className="bg-green-50 p-4 rounded mb-4">
-              <table className="w-full text-black">
+            <div className="bg-green-50 p-4 rounded mb-4 overflow-x-auto">
+              <table className="w-full text-black text-sm">
                 <tbody>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Reservation Code:</td>
-                    <td>{reservationData.reservation_code}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Reservation Code:</td>
+                    <td className="pb-1">{reservationData.reservation_code}</td>
                   </tr>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Name:</td>
-                    <td>{reservationData.first_name} {reservationData.last_name}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Name:</td>
+                    <td className="pb-1">{reservationData.first_name} {reservationData.last_name}</td>
                   </tr>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Email:</td>
-                    <td>{reservationData.email}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Email:</td>
+                    <td className="pb-1 break-all">{reservationData.email}</td>
                   </tr>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Phone:</td>
-                    <td>{reservationData.phone}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Phone:</td>
+                    <td className="pb-1">{reservationData.phone}</td>
                   </tr>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Origin:</td>
-                    <td>{reservationData.origin}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Origin:</td>
+                    <td className="pb-1">{reservationData.origin}</td>
                   </tr>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Destination:</td>
-                    <td>{reservationData.destination}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Destination:</td>
+                    <td className="pb-1">{reservationData.destination}</td>
                   </tr>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Pickup Date:</td>
-                    <td>{reservationData.pickup_date}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Pickup Date:</td>
+                    <td className="pb-1">{reservationData.pickup_date}</td>
                   </tr>
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Pickup Time:</td>
-                    <td>{reservationData.pickup_time}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Pickup Time:</td>
+                    <td className="pb-1">{reservationData.pickup_time}</td>
                   </tr>
                   {reservationData.round_trip && (
                     <>
                       <tr>
-                        <td className="font-bold pr-4 pb-1">Return Date:</td>
-                        <td>{reservationData.return_date}</td>
+                        <td className="font-bold pr-2 pb-1 whitespace-nowrap">Return Date:</td>
+                        <td className="pb-1">{reservationData.return_date}</td>
                       </tr>
                       <tr>
-                        <td className="font-bold pr-4 pb-1">Return Time:</td>
-                        <td>{reservationData.return_time}</td>
+                        <td className="font-bold pr-2 pb-1 whitespace-nowrap">Return Time:</td>
+                        <td className="pb-1">{reservationData.return_time}</td>
                       </tr>
                     </>
                   )}
                   <tr>
-                    <td className="font-bold pr-4 pb-1">Total Price:</td>
-                    <td className="text-xl font-bold">${reservationData.price.toFixed(2)}</td>
+                    <td className="font-bold pr-2 pb-1 whitespace-nowrap">Total Price:</td>
+                    <td className="text-xl font-bold pb-1">${reservationData.price.toFixed(2)}</td>
                   </tr>
                 </tbody>
               </table>
@@ -576,17 +576,17 @@ const sendConfirmationEmail = async (reservationData: any) => {
 
   return (
     <div className="max-w-2xl mx-auto p-4 bg-white shadow-md rounded-lg">
-      <div className="mb-8 bg-green-100 p-4 rounded-lg">
+      <div className="mb-8 bg-green-100 p-4 rounded-lg overflow-x-auto">
         <h2 className="text-2xl font-bold text-black mb-4 flex items-center">
           <Bus className="mr-2 text-green-600" /> Shuttle Reservation Process
         </h2>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center min-w-max">
           {steps.map((step, index) => (
-            <div key={step} className="flex flex-col items-center">
+            <div key={step} className="flex flex-col items-center mx-2">
               <div className={`w-8 h-8 rounded-full flex items-center justify-center ${index <= currentStep ? 'bg-green-500 text-white' : 'bg-green-200 text-green-600'}`}>
                 {index < currentStep ? <CheckCircle size={20} /> : index + 1}
               </div>
-              <span className="text-xs mt-1 text-black">{step}</span>
+              <span className="text-xs mt-1 text-black text-center">{step}</span>
             </div>
           ))}
         </div>
@@ -635,7 +635,7 @@ const sendConfirmationEmail = async (reservationData: any) => {
       {showConfirmation && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg shadow-xl">
-            <h3 className="text-2xl font-bol d mb-4 text-green-600">Reservation Confirmed</h3>
+            <h3 className="text-2xl font-bold mb-4 text-green-600">Reservation Confirmed</h3>
             <p className="text-black mb-4">
               Your reservation has been finalized successfully! You will receive a confirmation email shortly.
             </p>
