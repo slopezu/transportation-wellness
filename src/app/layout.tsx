@@ -1,6 +1,7 @@
 import React from 'react';
 import { Inter } from 'next/font/google';
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { GoogleMapsProvider } from '@/components/GoogleMapsContext';
 import ClientLayout from "@/components/ClientLayout";
 import Header from '@/components/Header';
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
   description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.',
   keywords: [
     'airport shuttle Costa Rica',
-    'Liberia airport transfers',
+    'Liberia airport shuttle',
+    'Guanacaste airport shuttle',
     'Nosara airport transfers',
     'Hospital shuttle home',
     'Santa Teresa shuttle transportation',
@@ -85,6 +87,21 @@ export default function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang="es">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-745659643"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'AW-745659643');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <GoogleMapsProvider>
           <JsonLd data={jsonLdData} />
@@ -96,6 +113,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </ClientLayout>
           <Footer />
         </GoogleMapsProvider>
+        <Script id="google-conversion" strategy="afterInteractive">
+          {`
+            gtag('event', 'conversion', {
+                'send_to': 'AW-745659643/xcD7CMfQ4eUZEPu5x-MC',
+                'value': 1.0,
+                'currency': 'USD'
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
