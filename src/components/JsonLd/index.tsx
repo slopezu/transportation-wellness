@@ -1,8 +1,8 @@
 export default function JsonLd() {
   const jsonLdData = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Wellness Transportation - Shuttle Service",
+    "@type": "TransportationService",
+    "name": "Wellness Transportation",
     "image": "https://transportation-wellness.com/logo.png",
     "description": "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.",
     "@id": "https://transportation-wellness.com",
@@ -23,15 +23,7 @@ export default function JsonLd() {
       "latitude": 10.6326807,
       "longitude": -85.4404804
     },
-    "areaServed": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": 10.6326807,
-        "longitude": -85.4404804
-      },
-      "geoRadius": "300000"
-    },
+    "areaServed": "Costa Rica",
     "serviceArea": {
       "@type": "GeoCircle",
       "geoMidpoint": {
@@ -54,7 +46,13 @@ export default function JsonLd() {
       ],
       "opens": "00:00",
       "closes": "23:59"
-    }
+    },
+    "sameAs": [
+      "https://www.facebook.com/WellnessTransportationCR/",
+      "https://www.instagram.com/wellnesstransportationcr",
+      "https://maps.app.goo.gl/9Ej64a9Xz7NqY5ui9"
+    ],
+    "logo": "https://transportation-wellness.com/logo.png"
   };
 
   return (
