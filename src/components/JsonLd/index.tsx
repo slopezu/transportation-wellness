@@ -50,7 +50,7 @@ export default function JsonLd() {
     "sameAs": [
       "https://www.facebook.com/WellnessTransportationCR/",
       "https://www.instagram.com/wellnesstransportationcr",
-      "https://maps.app.goo.gl/9Ej64a9Xz7NqY5ui9"
+      "https://maps.app.goo.gl/VW1oAdrJ88Td5E2XA"
     ],
     "logo": "https://transportation-wellness.com/logo.png"
   };
