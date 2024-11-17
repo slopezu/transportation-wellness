@@ -14,10 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://transportation-wellness.com'),
   title: {
-    default: 'Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service',
+    default: 'Wellness Transportation | Easy Online Booking - Guanacaste and San Jose Shuttle Service',
     template: '%s | Wellness Transportation CR'
   },
-  description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.',
+  description: 'Professional private shuttle service in Costa Rica. Easy online booking for airport transfers, hotel shuttles, and custom tours in Guanacaste, San José, La Fortuna, and nationwide.',
   keywords: [
     'airport shuttle Costa Rica',
     'Liberia airport shuttle',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     'Hospital shuttle home',
     'Santa Teresa shuttle transportation',
     'Hermosa beach airport transfers',
-    'Avellanas, Potrero, Brasilito,Flamingo beach airport shuttle',
+    'Avellanas, Potrero, Brasilito, Flamingo beach airport shuttle',
     'San José airport shuttle',
     'private transfers Costa Rica',
     'Ocotal shuttle Coco',
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     'Monteverde transportation',
     'Tamarindo shuttle',
     'Guanacaste airport',
-    'Lir Daniel Oduber Quiros Lir',
-    'Sjo Juan Santamaria Sjo'
+    'LIR Daniel Oduber Quiros',
+    'SJO Juan Santamaria'
   ],
   openGraph: {
     type: 'website',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: 'https://transportation-wellness.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Easy booking online - Guanacaste and San Jose Shuttle Service'
+        alt: 'Wellness Transportation - Easy Online Booking for Costa Rica Shuttle Services'
       }
     ]
   },
@@ -58,7 +58,14 @@ export const metadata: Metadata = {
   },
   robots: {
     index: true,
-    follow: true
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   alternates: {
     canonical: 'https://transportation-wellness.com'
@@ -70,21 +77,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const jsonLdData = {
-    "@context": "https://schema.org",
-    "@type": "TransportationService",
-    "name": "Wellness Transportation",
-    "description": "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.",
-    "areaServed": "Costa Rica",
-    "url": "https://transportation-wellness.com",
-    "logo": "https://transportation-wellness.com/logo.png",
-    "sameAs": [
-      "https://www.facebook.com/WellnessTransportationCR",
-      "https://www.instagram.com/wellnesstransportationcr",
-      "https://twitter.com/WellnessTransportCR"
-    ]
-  };
-
   return (
     <html lang="es">
       <head>
@@ -97,14 +89,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'AW-745659643');
           `}
         </Script>
       </head>
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         <GoogleMapsProvider>
-          <JsonLd data={jsonLdData} />
+          <JsonLd />
           <Header />
           <ClientLayout>
             <main className="flex-grow pt-16">
