@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 
 // Implement fetchServices to get dynamic service data
 async function fetchServices() {
-  // TODO: Replace this with actual API or database call when available
+  // This is a placeholder. In a real implementation, this would fetch data from an API or database
   return [
     {
       slug: 'airport-transportation',
@@ -24,12 +24,16 @@ async function fetchServices() {
       slug: 'san-jose-shuttle',
       updatedAt: new Date().toISOString(),
     },
+    {
+      slug: 'custom-tours',
+      updatedAt: new Date().toISOString(),
+    },
   ]
 }
 
 // Implement fetchLocations to get dynamic location data
 async function fetchLocations() {
-  // TODO: Replace this with actual API or database call when available
+  // This is a placeholder. In a real implementation, this would fetch data from an API or database
   return [
     {
       slug: 'liberia',
@@ -49,6 +53,10 @@ async function fetchLocations() {
     },
     {
       slug: 'la-fortuna',
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      slug: 'monteverde',
       updatedAt: new Date().toISOString(),
     },
   ]
@@ -113,6 +121,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/terms-and-conditions`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/privacy-policy`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.4,
     },
   ]
 
