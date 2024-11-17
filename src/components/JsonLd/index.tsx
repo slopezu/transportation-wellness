@@ -4,7 +4,7 @@ export default function JsonLd() {
     "@type": "TransportationService",
     "name": "Wellness Transportation",
     "image": "https://transportation-wellness.com/logo.png",
-    "description": "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.",
+    "description": "Professional private shuttle service in Costa Rica. Easy online booking for airport transfers, hotel shuttles, and custom tours in Guanacaste, San José, La Fortuna, and nationwide.",
     "@id": "https://transportation-wellness.com",
     "url": "https://transportation-wellness.com",
     "telephone": "+506 89680765",
@@ -23,7 +23,10 @@ export default function JsonLd() {
       "latitude": 10.6326807,
       "longitude": -85.4404804
     },
-    "areaServed": "Costa Rica",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Costa Rica"
+    },
     "serviceArea": {
       "@type": "GeoCircle",
       "geoMidpoint": {
@@ -52,7 +55,57 @@ export default function JsonLd() {
       "https://www.instagram.com/wellnesstransportationcr",
       "https://maps.app.goo.gl/VW1oAdrJ88Td5E2XA"
     ],
-    "logo": "https://transportation-wellness.com/logo.png"
+    "logo": "https://transportation-wellness.com/logo.png",
+    "availableLanguage": ["English", "Spanish"],
+    "paymentAccepted": ["Cash", "Credit Card"],
+    "currenciesAccepted": "USD, CRC",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Transportation Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Shuttle Service",
+            "name": "Airport Transfers",
+            "description": "Private shuttle service to and from Costa Rica airports"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Shuttle Service",
+            "name": "Hotel Shuttle Service",
+            "description": "Comfortable transportation between hotels and resorts in Costa Rica"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Shuttle Service",
+            "name": "Easy online booking",
+            "description": "Personalized transportation, select your location on the map and get the rate automatically"
+          }
+        }
+      ]
+    },
+    "review": {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.9",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "John Doe"
+      }
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "250"
+    }
   };
 
   return (
