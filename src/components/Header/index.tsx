@@ -1,17 +1,24 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { Menu } from "@/types/menu";
-import { onScroll } from "@/utils/scrollActive";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher";
-import { Menu as MenuIcon, X } from 'lucide-react';
+import { MenuIcon, X } from 'lucide-react';
 
-const menuData: Menu[] = [
+const menuData = [
   {
-    label: "Features",
-    route: "/#features",
+    label: "Home",
+    route: "/",
+  },
+  {
+    label: "Services",
+    route: "/services",
+  },
+  {
+    label: "Locations",
+    route: "/locations",
   },
   {
     label: "About",
@@ -25,6 +32,10 @@ const menuData: Menu[] = [
     label: "Contact Us",
     route: "/#contact",
   },
+  {
+    label: "Book Now",
+    route: "/booking",
+  },
 ];
 
 export default function Header() {
@@ -34,28 +45,19 @@ export default function Header() {
   const router = useRouter();
 
   useEffect(() => {
-    if (pathUrl === "/") {
-      window.addEventListener("scroll", onScroll);
-    }
+    const handleStickyNavbar = () => {
+      setSticky(window.scrollY >= 80);
+    };
 
     window.addEventListener("scroll", handleStickyNavbar);
 
     return () => {
-      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("scroll", handleStickyNavbar);
     };
-  }, [pathUrl]);
+  }, []);
 
   const navbarToggleHandler = () => {
     setNavbarOpen(!navbarOpen);
-  };
-
-  const handleStickyNavbar = () => {
-    if (window.scrollY >= 80) {
-      setSticky(true);
-    } else {
-      setSticky(false);
-    }
   };
 
   const closeMenu = () => {
@@ -86,12 +88,12 @@ export default function Header() {
     >
       <div className="container mx-auto max-w-[1400px] px-4">
         <div className="flex items-center justify-between py-3">
-          <a href="/" onClick={handleLogoClick} className="block">
+          <Link href="/" onClick={handleLogoClick} className="block">
             <Image
               width={140}
               height={68}
               src="/images/logo/logo.png"
-              alt="Logo"
+              alt="Wellness Transportation Logo"
               priority
               className="h-16 w-auto dark:hidden"
             />
@@ -99,11 +101,11 @@ export default function Header() {
               width={140}
               height={68}
               src="/images/logo/logo.png"
-              alt="Logo"
+              alt="Wellness Transportation Logo"
               priority
               className="hidden h-16 w-auto dark:block"
             />
-          </a>
+          </Link>
 
           <button
             onClick={navbarToggleHandler}
@@ -125,13 +127,23 @@ export default function Header() {
             <ul className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:space-x-8 lg:space-y-0">
               {menuData.map((item, index) => (
                 <li key={index}>
-                  <a
-                    href={item.route}
-                    onClick={(e) => scrollToSection(e, item.route.replace('/#', ''))}
-                    className="text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
-                  >
-                    {item.label}
-                  </a>
+                  {item.route.startsWith('/#') ? (
+                    <a
+                      href={item.route}
+                      onClick={(e) => scrollToSection(e, item.route.replace('/#', ''))}
+                      className="text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={item.route}
+                      className="text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                      onClick={closeMenu}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
