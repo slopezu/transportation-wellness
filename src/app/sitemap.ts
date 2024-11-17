@@ -1,9 +1,8 @@
 import { MetadataRoute } from 'next'
 
-// Implementación de fetchServices
+// Implement fetchServices to get dynamic service data
 async function fetchServices() {
-  // Como no hay una base de datos real por ahora, retornamos un array estático
-  // Esto se puede modificar más adelante para obtener datos de una API o base de datos
+  // TODO: Replace this with actual API or database call when available
   return [
     {
       slug: 'airport-transportation',
@@ -17,49 +16,106 @@ async function fetchServices() {
       slug: 'private-shuttle',
       updatedAt: new Date().toISOString(),
     },
+    {
+      slug: 'guanacaste-shuttle',
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      slug: 'san-jose-shuttle',
+      updatedAt: new Date().toISOString(),
+    },
+  ]
+}
+
+// Implement fetchLocations to get dynamic location data
+async function fetchLocations() {
+  // TODO: Replace this with actual API or database call when available
+  return [
+    {
+      slug: 'liberia',
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      slug: 'san-jose',
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      slug: 'tamarindo',
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      slug: 'nosara',
+      updatedAt: new Date().toISOString(),
+    },
+    {
+      slug: 'la-fortuna',
+      updatedAt: new Date().toISOString(),
+    },
   ]
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Obtener los servicios
-  const services = await fetchServices()
+  const baseUrl = 'https://transportation-wellness.com'
 
-  // Generar las URLs de los servicios
-  const servicesUrls = services.map(service => ({
-    url: `https://transportation-wellness.com/services/${service.slug}`,
+  // Fetch dynamic data
+  const [services, locations] = await Promise.all([fetchServices(), fetchLocations()])
+
+  // Generate service URLs
+  const serviceUrls = services.map(service => ({
+    url: `${baseUrl}/services/${service.slug}`,
     lastModified: new Date(service.updatedAt),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
 
-  // URLs base del sitio
+  // Generate location URLs
+  const locationUrls = locations.map(location => ({
+    url: `${baseUrl}/locations/${location.slug}`,
+    lastModified: new Date(location.updatedAt),
+    changeFrequency: 'weekly' as const,
+    priority: 0.6,
+  }))
+
+  // Base routes
   const routes = [
     {
-      url: 'https://transportation-wellness.com',
+      url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'yearly' as const,
+      changeFrequency: 'daily' as const,
       priority: 1,
     },
     {
-      url: 'https://transportation-wellness.com/about',
+      url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     },
     {
-      url: 'https://transportation-wellness.com/services',
+      url: `${baseUrl}/services`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
       priority: 0.9,
     },
     {
-      url: 'https://transportation-wellness.com/contact',
+      url: `${baseUrl}/locations`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/booking`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.9,
+    },
   ]
 
-  // Combinar las URLs base con las URLs de los servicios
-  return [...routes, ...servicesUrls]
+  // Combine all URLs
+  return [...routes, ...serviceUrls, ...locationUrls]
 }
