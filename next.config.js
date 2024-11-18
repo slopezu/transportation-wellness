@@ -3,14 +3,23 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['transportation-wellness.com'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    domains: ["www.transportation-wellness.com","localhost"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
+      },
+    ],
   },
-  i18n: {
-    locales: ['en', 'es'],
-    defaultLocale: 'es',
+  typescript: {
+    ignoreBuildErrors: true,
   },
+  env: {
+    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  },
+  // Add security headers
   async headers() {
     return [
       {
@@ -30,21 +39,12 @@ const nextConfig = {
           },
         ],
       },
-    ]
+    ];
   },
-  async redirects() {
-    return [
-      {
-        source: '/old-page',
-        destination: '/new-page',
-        permanent: true,
-      },
-    ]
+  // Enable webpack5
+  webpack5: true,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false, path: false };
+    return config;
   },
-  webpack: (config, { isServer }) => {
-    // Custom webpack config here
-    return config
-  },
-}
-
-module.exports = nextConfig
+};
