@@ -3,50 +3,37 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["www.transportation-wellness.com"],
+    domains: ["transportation-wellness.com"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdn.sanity.io",
-        port: "",
+        hostname: "*.public.blob.vercel-storage.com",
       },
     ],
   },
   typescript: {
     ignoreBuildErrors: true,
   },
-  env: {
-    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  },
-  // Add security headers
-  async headers() {
+  async redirects() {
     return [
       {
-        source: '/(.*)',
-        headers: [
+        source: '/:path*',
+        has: [
           {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
+            type: 'host',
+            value: 'transportation-wellness.vercel.app',
           },
         ],
+        destination: 'https://transportation-wellness.com/:path*',
+        permanent: true,
       },
     ];
   },
-  // Enable webpack5
-  webpack5: true,
-  webpack: (config) => {
-    config.resolve.fallback = { fs: false, path: false };
-    return config;
+  i18n: {
+    locales: ['en', 'es'],
+    defaultLocale: 'en',
   },
 };
 
 module.exports = nextConfig;
+
