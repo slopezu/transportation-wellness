@@ -37,14 +37,7 @@ const nextConfig = {
     return [
       {
         source: '/:path*',
-        destination: '/_error',
-        has: [
-          {
-            type: 'query',
-            key: 'code',
-            value: '404',
-          },
-        ],
+        destination: '/404',
       },
     ];
   },
