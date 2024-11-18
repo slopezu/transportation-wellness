@@ -1,20 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ["localhost"],
+    remotePatterns: [
       {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'transportation-wellness.vercel.app',
-          },
-        ],
-        destination: 'https://transportation-wellness.com/:path*',
-        permanent: true,
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        port: "",
       },
-    ]
+    ],
   },
-}
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  env: {
+    NEXT_PUBLIC_SANITY_PROJECT_ID: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    NEXT_PUBLIC_SANITY_DATASET: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
