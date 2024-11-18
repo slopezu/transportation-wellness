@@ -33,14 +33,6 @@ const nextConfig = {
     locales: ['en', 'es'],
     defaultLocale: 'en',
   },
-  async rewrites() {
-    return [
-      {
-        source: '/:path*',
-        destination: '/404',
-      },
-    ];
-  },
 };
 
 module.exports = nextConfig;
