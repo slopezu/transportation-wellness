@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["www.transportation-wellness.com","localhost"],
+    domains: ["localhost"],
     remotePatterns: [
       {
         protocol: "https",
@@ -48,3 +48,5 @@ const nextConfig = {
     return config;
   },
 };
+
+module.exports = nextConfig;
