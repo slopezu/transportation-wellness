@@ -66,7 +66,7 @@ export default function JsonLd() {
         {
           "@type": "Offer",
           "itemOffered": {
-            "@type": "Shuttle Service",
+            "@type": "Service",
             "name": "Airport Transfers",
             "description": "Private shuttle service to and from Costa Rica airports"
           }
@@ -74,7 +74,7 @@ export default function JsonLd() {
         {
           "@type": "Offer",
           "itemOffered": {
-            "@type": "Shuttle Service",
+            "@type": "Service",
             "name": "Hotel Shuttle Service",
             "description": "Comfortable transportation between hotels and resorts in Costa Rica"
           }
@@ -82,29 +82,12 @@ export default function JsonLd() {
         {
           "@type": "Offer",
           "itemOffered": {
-            "@type": "Shuttle Service",
+            "@type": "Service",
             "name": "Easy online booking",
             "description": "Personalized transportation, select your location on the map and get the rate automatically"
           }
         }
       ]
-    },
-    "review": {
-      "@type": "Review",
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "4.9",
-        "bestRating": "5"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "John Doe"
-      }
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "250"
     }
   };
 
