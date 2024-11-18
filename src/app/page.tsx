@@ -8,11 +8,11 @@ import Contact from '@/components/Contact';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service',
-  description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.',
+  title: 'Wellness Transportation | Shuttle Service - Guanacaste and San Jose',
+  description: 'Easy online booking website dedicated to the private shuttle transportation - Select your locations on the map and get a quote automatically. We go anywhere Costa Rica.',
   openGraph: {
-    title: 'Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service',
-    description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
+    title: 'Wellness Transportation | Shuttle Service - Guanacaste and San Jose',
+    description: 'Easy online booking website dedicated to the private shuttle transportation - Select your locations on the map and get a quote automatically. We go anywhere Costa Rica.',
     images: [
       {
         url: 'https://transportation-wellness.com/home-og-image.jpg',
@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wellness Transportation | Easy booking online - Guanacaste and San Jose Shuttle Service',
-    description: 'Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica.. Lir & Sjo.',
+    title: 'Wellness Transportation | Shuttle Service - Guanacaste and San Jose',
+    description: 'Easy online booking website dedicated to the private shuttle transportation - Select your locations on the map and get a quote automatically. We go anywhere Costa Rica.',
     images: ['https://transportation-wellness.com/home-twitter-image.jpg'],
   },
 }
@@ -35,15 +35,15 @@ export default function Home() {
   const jsonLdData = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    "name": "Wellness Transportation CR- Home",
-    "description": "Easy booking online - Guanacaste and San Jose Shuttle Service",
+    "name": "Wellness Transportation",
+    "description": "Shuttle Service - Guanacaste and San Jose",
     "url": "https://transportation-wellness.com",
     "mainEntity": {
       "@type": "TransportationService",
-      "name": "Wellness Transportation CR",
-      "description": "Easy online booking website dedicated to the private shuttle transportation from San José, Guanacaste, La Fortuna and anywhere Costa Rica",
+      "name": "Wellness Transportation",
+      "description": "Easy online booking website dedicated to the private shuttle transportation - Select your locations on the map and get a quote automatically. We go anywhere Costa Rica.",
       "areaServed": "Costa Rica",
-      "serviceType": ["Airport Transfers", "Hotel Shuttle", "Custom Tours"],
+      "serviceType": ["Airport Transfers", "Hotel Shuttle", "Guanacaste shuttle"],
       "availableLanguage": ["Spanish", "English"],
       "priceRange": "$$",
       "telephone": "+506 89680765",
