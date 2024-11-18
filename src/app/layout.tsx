@@ -14,10 +14,10 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   metadataBase: new URL('https://transportation-wellness.com'),
   title: {
-    default: 'Wellness Transportation | Easy Online Booking - Guanacaste and San Jose Shuttle Service',
-    template: '%s | Wellness Transportation CR'
+    default: 'Wellness Transportation | Shuttle Service - Guanacaste and San Jose',
+    template: '%s | Wellness Transportation'
   },
-  description: 'Professional private shuttle service in Costa Rica. Easy online booking for airport transfers, hotel shuttles, and custom tours in Guanacaste, San José, La Fortuna, and nationwide.',
+  description: 'Easy online booking. Select your locations on the map and get the quote automatically for airport transfers, hotel shuttles, and custom tours anywhere in Costa Rica.',
   keywords: [
     'airport shuttle Costa Rica',
     'Liberia airport shuttle',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
         url: 'https://transportation-wellness.com/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Wellness Transportation - Easy Online Booking for Costa Rica Shuttle Services'
+        alt: 'Easy online booking. Select your locations on the map and get the quote automatically for airport transfers, hotel shuttles, and custom tours anywhere in Costa Rica.'
       }
     ]
   },
