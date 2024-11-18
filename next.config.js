@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["localhost", "transportation-wellness.com"],
+    domains: ["transportation-wellness.com"],
     remotePatterns: [
       {
         protocol: "https",
@@ -32,6 +32,22 @@ const nextConfig = {
   i18n: {
     locales: ['en', 'es'],
     defaultLocale: 'en',
+  },
+  // Add this section for custom error handling
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: '/_error',
+        has: [
+          {
+            type: 'query',
+            key: 'code',
+            value: '404',
+          },
+        ],
+      },
+    ];
   },
 };
 
