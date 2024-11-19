@@ -59,11 +59,14 @@ const Contact = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
               </svg>
             </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Contact;
+            <a href="https://x.com/WellnessShuttle" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
+              <span className="sr-only">X (Twitter)</span>
+              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a href="https://www.tripadvisor.co.za/Attraction_Review-g309240-d30810416-Reviews-Wellness_Transportation-Liberia_Province_of_Guanacaste.html" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200">
+              <span className="sr-only">TripAdvisor</span>
+              <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.006 4.295c-2.67 0-4.847 2.177-4.847 4.847 0 2.67 2.177 4.847 4.847 4.847 2.67 0 4.847-2.177 4.847-4.847 0-2.67-2.177-4.847-4.847-4.847zm0 7.734c-1.592 0-2.887-1.295-2.887-2.887s1.295-2.887 2.887-2.887 2.887 1.295 2.887 2.887-1.295 2.887-2.887 2.887z"/>
+                <path d="M12.006 0C5.378 0 0 5.378 0 12.006c0 6.628 5.378 12.006 12.006 12.006 6.628 0 12.006-5.378 12.006-12.006C24.012 5.378 18.634 0 12.006 0zm0 21.092c-5.018 0-9.086-4.068-9.086-9.086s4.068-9.086 9.086-9.086 9.086 4.068 9.086 9.086-4.068 9.086-9.086 
