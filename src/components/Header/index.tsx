@@ -13,14 +13,6 @@ const menuData = [
     route: "/",
   },
   {
-    label: "Services",
-    route: "/services",
-  },
-  {
-    label: "Locations",
-    route: "/locations",
-  },
-  {
     label: "About",
     route: "/#about",
   },
@@ -31,10 +23,6 @@ const menuData = [
   {
     label: "Contact Us",
     route: "/#contact",
-  },
-  {
-    label: "Book Now",
-    route: "/booking",
   },
 ];
 
@@ -75,7 +63,7 @@ export default function Header() {
     closeMenu();
   };
 
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleReload = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     router.refresh();
   };
@@ -88,7 +76,7 @@ export default function Header() {
     >
       <div className="container mx-auto max-w-[1400px] px-4">
         <div className="flex items-center justify-between py-3">
-          <Link href="/" onClick={handleLogoClick} className="block">
+          <Link href="/" onClick={handleReload} className="block">
             <Image
               width={140}
               height={68}
@@ -127,7 +115,15 @@ export default function Header() {
             <ul className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:space-x-8 lg:space-y-0">
               {menuData.map((item, index) => (
                 <li key={index}>
-                  {item.route.startsWith('/#') ? (
+                  {item.route === "/" ? (
+                    <a
+                      href={item.route}
+                      onClick={handleReload}
+                      className="text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
                     <a
                       href={item.route}
                       onClick={(e) => scrollToSection(e, item.route.replace('/#', ''))}
@@ -135,14 +131,6 @@ export default function Header() {
                     >
                       {item.label}
                     </a>
-                  ) : (
-                    <Link
-                      href={item.route}
-                      className="text-base font-medium text-black hover:text-primary dark:text-white dark:hover:text-primary"
-                      onClick={closeMenu}
-                    >
-                      {item.label}
-                    </Link>
                   )}
                 </li>
               ))}
