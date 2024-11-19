@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import DarkModeSwitcher from "@/components/Header/DarkModeSwitcher";
@@ -30,7 +30,6 @@ export default function Header() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [sticky, setSticky] = useState(false);
   const pathUrl = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
     const handleStickyNavbar = () => {
@@ -65,7 +64,7 @@ export default function Header() {
 
   const handleReload = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    router.refresh();
+    window.location.reload();
   };
 
   return (
